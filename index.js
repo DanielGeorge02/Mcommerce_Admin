@@ -26,6 +26,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/", (req, res) => {
+  res.send({ message: "API is working successfully" });
+});
+
 app.post("/send", (req, res) => {
   const receivedToken = req.body.fcmToken;
   const message = {
