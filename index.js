@@ -7,7 +7,7 @@ process.env.GOOGLE_APPLICATION_CREDENTIALS;
 
 initializeApp({
   credential: applicationDefault(),
-  projectId: "potion-for-creators",
+  projectId: "cathartic-gofer",
 });
 
 const app = express();
@@ -31,13 +31,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/send", (req, res) => {
-  const receivedToken = req.body.fcmToken;
   const message = {
     notification: {
-      title: "Title",
-      body: "This is the body of the notification",
+      title: req.body.title,
+      body: req.body.message,
     },
-    token: "",
+    token: req.body.fcmToken,
   };
 
   getMessaging()
@@ -45,7 +44,6 @@ app.post("/send", (req, res) => {
     .then((response) => {
       res.status(200).json({
         message: "Successfully sent message",
-        token: receivedToken,
       }),
         console.log("Successfully sent message:", response);
     })
