@@ -41,10 +41,11 @@ app.post("/send", (req, res) => {
     if (err) {
       console.log("Something has gone wrong!" + err);
       console.log("Respponse:! " + response);
+      res.send("notsent");
     } else {
       // showToast("Successfully sent with response");
       console.log("Successfully sent with response: ", response);
-      res.json(response);
+      res.send("sent");
     }
   });
 });
