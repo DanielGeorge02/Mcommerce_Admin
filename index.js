@@ -82,5 +82,5 @@ app.listen(8000, (req, res) => {
     });
   };
 
-  setInterval(sendNotification, 10000);
+  // setInterval(sendNotification, 10000);
 });
