@@ -2,6 +2,8 @@ var FCM = require("fcm-node");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
 const express = require("express");
+const { db } = require("./firebaseconfig");
+
 const serverKey = process.env.SERVER_KEY;
 const fcm = new FCM(serverKey);
 
@@ -31,7 +33,6 @@ app.post("/send", (req, res) => {
     },
 
     data: {
-      //you can send only notification or only data(or include both)
       title: "ok cdfsdsdfsd",
       body: '{"name" : "okg ooggle ogrlrl","product_id" : "123","final_price" : "0.00035"}',
     },
@@ -50,22 +51,24 @@ app.post("/send", (req, res) => {
   });
 });
 
-app.listen(8000, (req, res) => {
-  console.log("listening to port 8000");
-  // const currentDate = new Date();
-  // const formattedDate = currentDate.toLocaleString(); // Returns a string in ISO 8601 format
-  // console.log(formattedDate);
+app.post("/schedule", (req, res) => {
+  const now = new Date();
+  const targetTime = new Date(req.body.time);
+  const millisecondsToWait = targetTime.getTime() - now;
+  console.log(now, targetTime);
+  console.log(millisecondsToWait);
 
-  const sendNotification = () => {
+  setTimeout(() => {
+    // Your code here
+
     var message = {
-      to: "cNWRRp64QVa2xAF3Y1rNte:APA91bGfh5DZomevW0_hT2tw3H3UEVRmmXKMYh7SmKQH_d4k6Rt589C0GPyp1G_IKyTduq3NZY1jndmeUuWjuJ3KUI6W9nxT1RxQkz6MkO2l0JYNL5_NAVXL1iTNmKlbMNVFTzH_zqYL",
+      to: req.body.fcmToken,
       notification: {
-        title: "Notification",
-        body: "Message",
+        title: req.body.title,
+        body: req.body.body,
       },
 
       data: {
-        //you can send only notification or only data(or include both)
         title: "ok cdfsdsdfsd",
         body: '{"name" : "okg ooggle ogrlrl","product_id" : "123","final_price" : "0.00035"}',
       },
@@ -76,11 +79,13 @@ app.listen(8000, (req, res) => {
         console.log("Something has gone wrong!" + err);
         console.log("Respponse:! " + response);
       } else {
-        // showToast("Successfully sent with response");
         console.log("Successfully sent with response: ", response);
       }
     });
-  };
+  }, millisecondsToWait);
+  res.send("Message Scheduled");
+});
 
-  setInterval(sendNotification, 10000);
+app.listen(8000, (req, res) => {
+  console.log("listening to port 8000");
 });
