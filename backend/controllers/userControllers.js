@@ -11,7 +11,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
     })
     .then(() => {
       res.send(responseArr);
-      console.log(responseArr.length + " items fetched successfully");
+      console.log("Totally " + responseArr.length + " fetched successfully");
     });
 });
 
@@ -26,7 +26,9 @@ const getUsersByType = asyncHandler(async (req, res) => {
     })
     .then(() => {
       res.send(responseArr);
-      console.log(responseArr.length + " items fetched successfully");
+      console.log(
+        responseArr.length + req.params.usertype + " fetched successfully"
+      );
     });
 });
 
