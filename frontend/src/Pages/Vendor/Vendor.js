@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./Doctors.css";
+import "./Vendor.css";
 import { Navbar } from "../../Components/Navbar/Navbar";
 import { Input, Space, Select, Drawer } from "antd";
 import { MdVerifiedUser } from "react-icons/md";
 import { CiNoWaitingSign } from "react-icons/ci";
 
-const Doctor = ({ api }) => {
+const Vendor = ({ api }) => {
   const { Search } = Input;
   const dropdown = ["Name", "Email", "Location", "Status"];
   const [allUsers, setAllUsers] = useState();
@@ -16,7 +16,7 @@ const Doctor = ({ api }) => {
   const [data, setData] = useState();
 
   const getUsers = async () => {
-    await api.get("/users/doctor").then((res) => {
+    await api.get("/users/vendor").then((res) => {
       setDoctors(res.data);
     });
   };
@@ -62,10 +62,10 @@ const Doctor = ({ api }) => {
             <thead className="w-full">
               <tr className="w-full grid grid-cols-6 place-items-center bg-blue-700 font-medium text-lg tracking-wider h-8">
                 <th className="font-normal text-white">Name</th>
-                <th className="font-normal text-white">Register Number</th>
+                <th className="font-normal text-white">GST Number</th>
                 <th className="font-normal text-white">Phone No</th>
-                <th className="font-normal text-white">Specialization</th>
-                <th className="font-normal text-white">Registered Year</th>
+                <th className="font-normal text-white">Shop Name</th>
+                <th className="font-normal text-white">Address</th>
                 <th className="font-normal text-white">Status</th>
               </tr>
             </thead>
@@ -80,12 +80,12 @@ const Doctor = ({ api }) => {
                     className="w-full grid grid-cols-6 place-items-center h-10 cursor-pointer"
                   >
                     <td className="font-normal text-black">{user.name}</td>
-                    <td className="font-normal text-black">{user.reg_no}</td>
+                    <td className="font-normal text-black">{user.gst_no}</td>
                     <td className="font-normal text-black">{user.phoneNo}</td>
                     <td className="font-normal text-black">
-                      {user.specialization}
+                      {user.shop_name}
                     </td>
-                    <td className="font-normal text-black">{user.year_reg}</td>
+                    <td className="font-normal text-black">{user.address}</td>
                     <td className=" w-full grid place-items-center">
                       {user.status === "verified" ? (
                         <p className="text-lime-600 text-xl flex grid-cols-2 place-items-center font-bold">
@@ -123,20 +123,20 @@ const Doctor = ({ api }) => {
           <p className="pl-10 text-lg">{data?.name}</p>
         </div>
         <div className="w-full h-fit my-6 grid grid-cols-2">
-          <h1 className="text-xl">Register Number:</h1>
-          <p className="pl-10 text-lg">{data?.reg_no}</p>
+          <h1 className="text-xl">GST Number:</h1>
+          <p className="pl-10 text-lg">{data?.gst_no}</p>
         </div>
         <div className="w-full h-fit my-6 grid grid-cols-2">
           <h1 className="text-xl">Phone:</h1>
           <p className="pl-10 text-lg">{data?.phoneNo}</p>
         </div>
         <div className="w-full h-fit my-6 grid grid-cols-2">
-          <h1 className="text-xl">Specialization:</h1>
-          <p className="pl-10 text-lg">{data?.specialization}</p>
+          <h1 className="text-xl">Shop Name:</h1>
+          <p className="pl-10 text-lg">{data?.shop_name}</p>
         </div>
         <div className="w-full h-fit my-6 grid grid-cols-2">
-          <h1 className="text-xl">Registered Year:</h1>
-          <p className="pl-10 text-lg">{data?.year_reg}</p>
+          <h1 className="text-xl">Address:</h1>
+          <p className="pl-10 text-lg">{data?.address}</p>
         </div>
         <div className="w-full grid place-items-center">
           {data?.status === "verified" ? (
@@ -198,4 +198,4 @@ const Doctor = ({ api }) => {
   );
 };
 
-export default Doctor;
+export default Vendor;

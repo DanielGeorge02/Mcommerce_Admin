@@ -3,7 +3,7 @@ const FCM = require("fcm-node");
 const dotenv = require("dotenv").config();
 
 const serverKey = process.env.SERVER_KEY;
-console.log(serverKey);
+// console.log(serverKey);
 const fcm = new FCM(serverKey);
 
 const SendNotification = asyncHandler(async (req, res) => {
