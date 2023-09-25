@@ -1,5 +1,7 @@
 import "./App.css";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import Doctor from "./Pages/Doctor/Doctor";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import axios from "axios";
 
@@ -13,9 +15,12 @@ const api = axios.create({
 
 function App() {
   return (
-    <div className="App">
-      <Dashboard api={api} />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Dashboard api={api} />} />
+        <Route path="/doctor" element={<Doctor api={api} />} />
+      </Routes>
+    </Router>
   );
 }
 

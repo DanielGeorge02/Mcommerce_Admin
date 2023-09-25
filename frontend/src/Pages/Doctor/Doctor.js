@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Navbar } from "../../Components/Navbar/Navbar";
 
 const Doctor = ({ api }) => {
   const [allUsers, setAllUsers] = useState();
@@ -36,21 +37,18 @@ const Doctor = ({ api }) => {
     //   setVendors(res.data);
     // });
   };
-
-  useEffect(() => {
-    console.table(allUsers, users, doctors, vendors);
-  }, [allUsers]);
   return (
-    <div className="grid w-fit">
-      <button
+    <div className="grid w-fit h-screen">
+      <Navbar active="doctor" />
+      {/* <button
         onClick={() => {
           getUsers();
         }}
         className="bg-blue-600 w-48 px-4 py-2 m-6 outline-none border-none rounded-xl"
       >
         Get Users
-      </button>
-
+      </button> */}
+      {/* 
       <section className="grid gap-5">
         <h1 className="font-bold text-3xl">Doctors:</h1>
         <table className=" ">
@@ -61,7 +59,7 @@ const Doctor = ({ api }) => {
               <th className="w-full border border-black">Register Number</th>
               <th className="w-full border border-black">Specialization</th>
               <th className="w-full border border-black">Status</th>
-              {/* <th className="w-full border border-black">{""}</th> */}
+               <th className="w-full border border-black">{""}</th>
             </tr>
           </thead>
           <tbody>
@@ -105,7 +103,7 @@ const Doctor = ({ api }) => {
           </tbody>
         </table>
       </section>
-      {/* <section className="grid gap-5">
+      <section className="grid gap-5">
         <h1 className="font-bold text-3xl">Vendors</h1>
         <table className=" ">
           <thead>
