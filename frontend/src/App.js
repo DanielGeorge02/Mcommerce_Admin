@@ -4,6 +4,7 @@ import Doctor from "./Pages/Doctor/Doctor";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import axios from "axios";
+import Random from "./Pages/Random/Random";
 
 const url = window.location.hostname;
 
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard api={api} />} />
         <Route path="/doctor" element={<Doctor api={api} />} />
+        <Route path="/random" element={<Random api={api} />} />
       </Routes>
     </Router>
   );

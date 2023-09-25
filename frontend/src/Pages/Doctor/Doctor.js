@@ -1,42 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../../Components/Navbar/Navbar";
 
-const Doctor = ({ api }) => {
+const Doctor = () => {
   const [allUsers, setAllUsers] = useState();
   const [users, setUsers] = useState();
   const [doctors, setDoctors] = useState();
   const [vendors, setVendors] = useState();
 
-  const getUsers = async () => {
-    await api.get("/users/all").then((res) => {
-      setAllUsers(res.data);
-      setUsers(
-        res.data.filter((user) => {
-          return user.userType === "user";
-        })
-      );
-      setDoctors(
-        res.data.filter((user) => {
-          return user.userType === "doctor";
-        })
-      );
-      setVendors(
-        res.data.filter((user) => {
-          return user.userType === "vendor";
-        })
-      );
-    });
-
-    // await api.get("/users/user").then((res) => {
-    //   setUsers(res.data);
-    // });
-    // await api.get("/users/doctor").then((res) => {
-    //   setDoctors(res.data);
-    // });
-    // await api.get("/users/vendor").then((res) => {
-    //   setVendors(res.data);
-    // });
-  };
   return (
     <div className="grid w-fit h-screen">
       <Navbar active="doctor" />
