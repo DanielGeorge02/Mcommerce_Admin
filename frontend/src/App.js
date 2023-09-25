@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import axios from "axios";
 import Vendor from "./Pages/Vendor/Vendor";
+import Random from "./Pages/Random/Random";
+import { Home } from "./Pages/Home/Home";
 
 const url = window.location.hostname;
 
@@ -18,9 +20,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Dashboard api={api} />} />
+        <Route path="/" element={<Home api={api} />} />
+        <Route path="/dashboard" element={<Dashboard api={api} />} />
         <Route path="/doctor" element={<Doctor api={api} />} />
         <Route path="/vendor" element={<Vendor api={api} />} />
+        <Route path="/random" element={<Random api={api} />} />
       </Routes>
     </Router>
   );
