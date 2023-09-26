@@ -77,7 +77,7 @@ const Vendor = ({ api }) => {
                       setOpen(true);
                       setData(user);
                     }}
-                    className="w-full grid grid-cols-6 place-items-center h-10 cursor-pointer"
+                    className="w-full grid grid-cols-6 place-items-center h-fit cursor-pointer"
                   >
                     <td className="font-normal text-black">{user.name}</td>
                     <td className="font-normal text-black">{user.gst_no}</td>
@@ -138,7 +138,8 @@ const Vendor = ({ api }) => {
           <h1 className="text-xl">Address:</h1>
           <p className="pl-10 text-lg">{data?.address}</p>
         </div>
-        <div className="w-full grid place-items-center">
+        <div className="w-full grid grid-cols-2 place-items-center">
+          <h1 className="text-xl">Status:</h1>
           {data?.status === "verified" ? (
             <p className="text-lime-600 text-xl flex grid-cols-2 place-items-center font-bold">
               <MdVerifiedUser /> <p>Verified</p>

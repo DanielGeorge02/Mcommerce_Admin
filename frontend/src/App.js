@@ -7,6 +7,8 @@ import axios from "axios";
 import Vendor from "./Pages/Vendor/Vendor";
 import Random from "./Pages/Random/Random";
 import { Home } from "./Pages/Home/Home";
+import { Navbar } from "./Components/Navbar/Navbar";
+import Queries from "./Pages/Queries/Queries";
 
 const url = window.location.hostname;
 
@@ -22,9 +24,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home api={api} />} />
         <Route path="/dashboard" element={<Dashboard api={api} />} />
+        <Route path="/navbar" element={<Navbar api={api} />} />
         <Route path="/doctor" element={<Doctor api={api} />} />
         <Route path="/vendor" element={<Vendor api={api} />} />
         <Route path="/random" element={<Random api={api} />} />
+        <Route path="/queries" element={<Queries api={api} />} />
       </Routes>
     </Router>
   );

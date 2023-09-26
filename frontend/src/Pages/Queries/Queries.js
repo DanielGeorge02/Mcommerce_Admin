@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
-import "./Doctors.css";
+// import "./Doctors.css";
 import { Navbar } from "../../Components/Navbar/Navbar";
 import { Input, Space, Select, Drawer } from "antd";
 import { MdVerifiedUser } from "react-icons/md";
 import { CiNoWaitingSign } from "react-icons/ci";
 
-const Doctor = ({ api }) => {
+const Queries = ({ api }) => {
   const { Search } = Input;
   const dropdown = ["Name", "Email", "Location", "Status"];
-  const [allUsers, setAllUsers] = useState();
-  const [users, setUsers] = useState();
-  const [doctors, setDoctors] = useState();
-  const [vendors, setVendors] = useState();
+  const [queries, setQueries] = useState();
   const [open, setOpen] = useState(false);
   const [data, setData] = useState();
 
   const getUsers = async () => {
-    await api.get("/users/doctor").then((res) => {
-      setDoctors(res.data);
+    await api.get("/queries").then((res) => {
+      setQueries(res.data);
     });
   };
 
@@ -29,7 +26,7 @@ const Doctor = ({ api }) => {
     <div className="w-full h-screen bg-[#F1F5F9] absolute">
       <Navbar active="doctor" />
       <section className="w-full max-w-[1200px] rounded-md h-32 mx-auto mt-10 p-5 flex flex-col justify-between bg-white">
-        <h1 className="text-xl">Users Database</h1>
+        <h1 className="text-xl">Queries Database</h1>
         <div className="flex gap-6">
           <button className="text-sm bg-[#DBEAFE] p-3">All</button>
           <button className="text-sm">New Users</button>
@@ -60,32 +57,31 @@ const Doctor = ({ api }) => {
         <div className="w-full h-96 border">
           <table className="w-full">
             <thead className="w-full">
-              <tr className="w-full grid grid-cols-6 place-items-center bg-blue-700 font-medium text-lg tracking-wider h-8">
+              <tr className="w-full grid grid-cols-5 place-items-center bg-blue-700 font-medium text-lg tracking-wider h-8">
                 <th className="font-normal text-white">Name</th>
-                <th className="font-normal text-white">Register Number</th>
                 <th className="font-normal text-white">Phone No</th>
-                <th className="font-normal text-white">Specialization</th>
-                <th className="font-normal text-white">Registered Year</th>
+                <th className="font-normal text-white">Description</th>
+                <th className="font-normal text-white">User</th>
                 <th className="font-normal text-white">Status</th>
               </tr>
             </thead>
             <tbody className="w-full">
-              {doctors?.map((user) => {
+              {queries?.map((user) => {
+                console.log(user);
                 return (
                   <tr
                     onClick={() => {
                       setOpen(true);
                       setData(user);
                     }}
-                    className="w-full grid grid-cols-6 place-items-center h-fit cursor-pointer"
+                    className="w-full grid grid-cols-5 place-items-center h-fit cursor-pointer"
                   >
                     <td className="font-normal text-black">{user.name}</td>
-                    <td className="font-normal text-black">{user.reg_no}</td>
                     <td className="font-normal text-black">{user.phoneNo}</td>
                     <td className="font-normal text-black">
-                      {user.specialization}
+                      {user.description}
                     </td>
-                    <td className="font-normal text-black">{user.year_reg}</td>
+                    <td className="font-normal text-black">{user.conveyto}</td>
                     <td className=" w-full grid place-items-center">
                       {user.status === "verified" ? (
                         <p className="text-lime-600 text-xl flex grid-cols-2 place-items-center font-bold">
@@ -123,22 +119,22 @@ const Doctor = ({ api }) => {
           <p className="pl-10 text-lg">{data?.name}</p>
         </div>
         <div className="w-full h-fit my-6 grid grid-cols-2">
-          <h1 className="text-xl">Register Number:</h1>
-          <p className="pl-10 text-lg">{data?.reg_no}</p>
-        </div>
-        <div className="w-full h-fit my-6 grid grid-cols-2">
           <h1 className="text-xl">Phone:</h1>
           <p className="pl-10 text-lg">{data?.phoneNo}</p>
         </div>
         <div className="w-full h-fit my-6 grid grid-cols-2">
-          <h1 className="text-xl">Specialization:</h1>
-          <p className="pl-10 text-lg">{data?.specialization}</p>
+          <h1 className="text-xl">Description:</h1>
+          <p className="pl-10 text-lg">{data?.description}</p>
         </div>
         <div className="w-full h-fit my-6 grid grid-cols-2">
-          <h1 className="text-xl">Registered Year:</h1>
-          <p className="pl-10 text-lg">{data?.year_reg}</p>
+          <h1 className="text-xl">User:</h1>
+          <p className="pl-10 text-lg">{data?.conveyto}</p>
         </div>
-        <div className="w-full grid grid-cols-3">
+        <div className="w-full h-fit my-6 grid grid-cols-2">
+          <h1 className="text-xl">Link:</h1>
+          <a href={data?.link} className="pl-10 text-lg text-blue-600">{data?.link}</a>
+        </div>
+        <div className="w-full h-fit my-6 grid grid-cols-3">
           <h1 className="text-xl">Status:</h1>
           {data?.status === "verified" ? (
             <p className="text-lime-600 text-xl flex grid-cols-2 place-items-center font-bold">
@@ -199,4 +195,4 @@ const Doctor = ({ api }) => {
   );
 };
 
-export default Doctor;
+export default Queries;

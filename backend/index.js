@@ -29,6 +29,7 @@ app.use((req, res, next) => {
 
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/notification", require("./routes/notificationRoutes"));
+app.use("/api/queries", require("./routes/queryRoutes"));
 
 app.listen(8000, (req, res) => {
   console.log("listening to port:", process.env.PORT);
