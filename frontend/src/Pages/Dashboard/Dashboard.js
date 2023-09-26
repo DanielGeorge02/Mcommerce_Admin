@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Line, Doughnut } from "react-chartjs-2";
 import home from "../../assets/Home.svg";
@@ -35,7 +35,40 @@ chartjs.register(
   ArcElement
 );
 
-const Dashboard = () => {
+const Dashboard = ({ api }) => {
+  const [allUsers, setAllUsers] = useState([]);
+  const [doctorCount, setDoctorCount] = useState([]);
+  const [userCount, setUserCount] = useState([]);
+  const [vendorCount, setVendorCount] = useState([]);
+  const [guardianCount, setGuardianCount] = useState([]);
+  const getUsers = async () => {
+    await api.get("/users/all").then((res) => {
+      setAllUsers(res.data);
+
+      const doctor = res.data.filter((user) => {
+        return user.userType === "doctor";
+      });
+      const user = res.data.filter((user) => {
+        return user.userType === "user";
+      });
+      const vendor = res.data.filter((user) => {
+        return user.userType === "vendor";
+      });
+      const guardian = res.data.filter((user) => {
+        return user.userType === "guardian";
+      });
+      setDoctorCount(doctor.length);
+      setUserCount(user.length);
+      setVendorCount(vendor.length);
+      setGuardianCount(guardian.length);
+      console.log(res.data);
+      console.log(doctor.length);
+    });
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
   const data = {
     labels: ["Jan", "Feb", "March", "Apr", "may", "Jun", "Jul", "Aug", "Sep"],
     datasets: [
@@ -132,7 +165,9 @@ const Dashboard = () => {
                 <h1 className="text-[20px] text-gray-400 font-semibold">
                   User
                 </h1>
-                <h1 className="text-[30px] text-black font-bold">20002</h1>
+                <h1 className="text-[30px] text-black font-bold">
+                  {userCount}
+                </h1>
               </div>
               <div className="w-[150px] h-[180px] bg-white flex flex-col drop-shadow-2xl py-3 justify-around items-center rounded-3xl">
                 <div className="h-[80px] w-[90%] bg-[#36A2EB] flex justify-around items-center rounded-lg">
@@ -141,7 +176,9 @@ const Dashboard = () => {
                 <h1 className="text-[20px] text-gray-400 font-semibold">
                   Guardian
                 </h1>
-                <h1 className="text-[30px] text-black font-bold">21002</h1>
+                <h1 className="text-[30px] text-black font-bold">
+                  {guardianCount}
+                </h1>
               </div>
               <div className="w-[150px] h-[180px] bg-white flex flex-col drop-shadow-2xl justify-around py-3  items-center rounded-3xl">
                 {" "}
@@ -152,7 +189,9 @@ const Dashboard = () => {
                 <h1 className="text-[20px] text-gray-400 font-semibold">
                   Doctor
                 </h1>
-                <h1 className="text-[30px] text-black font-bold">1095</h1>
+                <h1 className="text-[30px] text-black font-bold">
+                  {doctorCount}
+                </h1>
               </div>
               <div className="w-[150px] h-[180px] bg-white flex flex-col drop-shadow-2xl justify-around  py-3 items-center rounded-3xl">
                 {" "}
@@ -162,7 +201,9 @@ const Dashboard = () => {
                 <h1 className="text-[20px] text-gray-400 font-semibold">
                   Pharmacist
                 </h1>
-                <h1 className="text-[30px] text-black font-bold">2038</h1>
+                <h1 className="text-[30px] text-black font-bold">
+                  {vendorCount}
+                </h1>
               </div>
             </div>
 
