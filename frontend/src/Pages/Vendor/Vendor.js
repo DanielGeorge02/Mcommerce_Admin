@@ -82,9 +82,7 @@ const Vendor = ({ api }) => {
                     <td className="font-normal text-black">{user.name}</td>
                     <td className="font-normal text-black">{user.gst_no}</td>
                     <td className="font-normal text-black">{user.phoneNo}</td>
-                    <td className="font-normal text-black">
-                      {user.shop_name}
-                    </td>
+                    <td className="font-normal text-black">{user.shop_name}</td>
                     <td className="font-normal text-black">{user.address}</td>
                     <td className=" w-full grid place-items-center">
                       {user.status === "verified" ? (

@@ -8,6 +8,7 @@ import guardian from "../../assets/guardian.svg";
 import doctor from "../../assets/doctor.svg";
 import pharmacy from "../../assets/pharmacy.svg";
 import logout from "../../assets/logout.svg";
+import { Navbar } from "../../Components/Navbar/Navbar";
 import { Avatar } from "antd";
 import { Tooltip } from "react-tooltip";
 import {
@@ -96,35 +97,15 @@ const Dashboard = () => {
 
   return (
     <div className="bg-[#D0E0F3] h-screen w-screen flex items-center">
-      <div className="h-[90%] w-[5%] ml-5 bg-[#0075FF] rounded-3xl flex flex-col justify-between items-center">
-        <div className="h-[60%] flex flex-col justify-between mt-4">
-          <div className="w-[80px] h-[80px] bg-[#add1fa]  flex items-center justify-center rounded-[25px]">
-            <img className="h-11 w-11 " src={home} />
-          </div>
-
-          <div className="w-[80px] h-[80px]  flex items-center justify-center">
-            <img className="h-12 w-12 " src={user} />
-          </div>
-          <div className="w-[80px] h-[80px]  flex items-center justify-center">
-            <img className="h-12 w-12 " src={guardian} />
-          </div>
-          <div className="w-[80px] h-[80px] flex items-center justify-center ">
-            <img className="h-12 w-12 " src={doctor} />
-          </div>
-          <div className="w-[80px] h-[80px] flex items-center justify-center ">
-            <img className="h-12 w-12 " src={pharmacy} />
-          </div>
-        </div>
-
-        <div className="mb-4">
-          <img className="h-12 w-12 " src={logout} />
-        </div>
+      <div className="w-24">
+        <Navbar />
       </div>
-      <div className="flex flex-col w-[94%]  h-[100%]">
+
+      <div className="flex flex-col w-[90%]  h-[100%]">
         {" "}
         <div className="w-[100%] h-[40%]  flex flex-col justify-evenly">
-          <div className="w-[100%] flex flex-row justify-between">
-            <h1 className="text-[30px] mt-10 ml-5 text-[#0075FF] font-bold ">
+          <div className="w-[90%] max-w-[1200px] flex flex-row mx-auto justify-between">
+            <h1 className="text-[30px] mt-10 ml- text-[#0075FF] font-bold ">
               DashBoard
             </h1>
             <div className="flex flex-row mt-10 w-[200px] justify-evenly items-center">
@@ -141,81 +122,87 @@ const Dashboard = () => {
           </div>
 
           <div className="flex flex-row w-[100%] h-[70%] justify-around items-center">
-            <div className="flex flex-row w-[65%] ml-[65px] justify-between">
-              <div className="w-[180px] h-[180px] bg-white flex drop-shadow-2xl py-3 flex-col justify-around items-center rounded-3xl">
+            <div className="flex flex-row w-[65%] ml-11   justify-evenly">
+              <div className="w-[150px] h-[180px] bg-white flex drop-shadow-2xl py-3 flex-col justify-around items-center rounded-3xl">
                 {" "}
-                <div className="h-[80px] w-[80px]  bg-[#63EDFF]  flex justify-around items-center rounded-lg">
+                <div className="h-[80px] w-[90%]  bg-[#63EDFF]  flex justify-around items-center rounded-lg">
                   {" "}
                   <img className="h-12 w-12 " src={user} />
                 </div>
-                <h1 className="text-[20px] text-gray-400 font-bold">User</h1>
+                <h1 className="text-[20px] text-gray-400 font-semibold">
+                  User
+                </h1>
                 <h1 className="text-[30px] text-black font-bold">20002</h1>
               </div>
-              <div className="w-[180px] h-[180px] bg-white flex flex-col drop-shadow-2xl py-3 justify-around items-center rounded-3xl">
-                <div className="h-[80px] w-[80px] bg-[#36A2EB] flex justify-around items-center rounded-lg">
+              <div className="w-[150px] h-[180px] bg-white flex flex-col drop-shadow-2xl py-3 justify-around items-center rounded-3xl">
+                <div className="h-[80px] w-[90%] bg-[#36A2EB] flex justify-around items-center rounded-lg">
                   <img className="h-12 w-12 " src={guardian} />
                 </div>
-                <h1 className="text-[20px] text-gray-400 font-bold">
+                <h1 className="text-[20px] text-gray-400 font-semibold">
                   Guardian
                 </h1>
                 <h1 className="text-[30px] text-black font-bold">21002</h1>
               </div>
-              <div className="w-[180px] h-[180px] bg-white flex flex-col drop-shadow-2xl justify-around py-3  items-center rounded-3xl">
+              <div className="w-[150px] h-[180px] bg-white flex flex-col drop-shadow-2xl justify-around py-3  items-center rounded-3xl">
                 {" "}
-                <div className="h-[80px] w-[80px] bg-[#004FE3] flex justify-around items-center rounded-lg">
+                <div className="h-[80px] w-[90%] bg-[#004FE3] flex justify-around items-center rounded-lg">
                   {" "}
                   <img className="h-12 w-12 " src={doctor} />
                 </div>
-                <h1 className="text-[20px] text-gray-400 font-bold">Doctor</h1>
+                <h1 className="text-[20px] text-gray-400 font-semibold">
+                  Doctor
+                </h1>
                 <h1 className="text-[30px] text-black font-bold">1095</h1>
               </div>
-              <div className="w-[180px] h-[180px] bg-white flex flex-col drop-shadow-2xl justify-around  py-3 items-center rounded-3xl">
+              <div className="w-[150px] h-[180px] bg-white flex flex-col drop-shadow-2xl justify-around  py-3 items-center rounded-3xl">
                 {" "}
-                <div className="h-[80px] w-[80px] bg-[#345695] flex justify-around items-center rounded-lg">
+                <div className="h-[80px] w-[90%] bg-[#345695] flex justify-around items-center rounded-lg">
                   <img className="h-12 w-12 " src={pharmacy} />
                 </div>
-                <h1 className="text-[20px] text-gray-400 font-bold">
+                <h1 className="text-[20px] text-gray-400 font-semibold">
                   Pharmacist
                 </h1>
                 <h1 className="text-[30px] text-black font-bold">2038</h1>
               </div>
             </div>
 
-            <div className="h-[220px] flex flex-col justify-between  mr-8">
-              <div className="flex flex-row">
-                <div className="flex flex-row items-center h-[100px]  w-[280px] bg-white">
-                  <div className="h-[80px] w-[80px] bg-[#ff424c] ml-4  flex justify-around items-center rounded-lg">
-                    <img className="h-12 w-12 " src={doctor} />
+            <div className="h-[170px] w-[25%] mr-10 flex flex-col justify-evenly items-center rounded-3xl drop-shadow-2xl">
+              <div className="w-[75%]">
+                <div className="flex flex-row">
+                  <div className="flex flex-row items-center h-[50px] mb-5  w-[220px] bg-white rounded-2xl">
+                    <div className="h-[40px] aspect-square bg-[#ff424c] ml-4  flex justify-around items-center">
+                      <img className="h-12 w-12 " src={doctor} />
+                    </div>
+                    <h1 className="text-[13px] ml-4 text-gray-400 font-semibold">
+                      Doctor Pending Confirmation
+                    </h1>
                   </div>
-                  <h1 className="text-[15px] ml-4 text-black font-semibold">
-                    Doctor Pending Confirmation
-                  </h1>
-                </div>
-                <div className="flex items-center justify-center h-[100px] ml-4 w-[100px] bg-white mr-12">
-                  <h1 className="text-[25px] text-black font-bold">21</h1>
-                </div>
-              </div>
-              <div className="flex flex-row">
-                <div className="flex flex-row items-center h-[100px]  w-[280px] bg-white">
-                  <div className="h-[80px] w-[80px] bg-[#ff424c] ml-4 flex justify-around items-center rounded-lg">
-                    <img className="h-12 w-12 " src={pharmacy} />
+                  <div className="flex items-center justify-center h-[50px] ml-4 w-[50px] bg-white rounded-full">
+                    <h1 className="text-[25px] text-black font-bold">21</h1>
                   </div>
-                  <h1 className="text-[15px] ml-4 text-black font-semibold">
-                    Pharmacist Pending Confirmation
-                  </h1>
                 </div>
+                <div className="flex flex-row">
+                  <div className="flex items-center h-[50px] justify-center w-[220px] bg-white rounded-2xl">
+                    <div className="h-[40px] aspect-square bg-[#ff424c] ml-4 flex justify-around items-center ">
+                      <img className="h-12 w-12 " src={pharmacy} />
+                    </div>
+                    <h1 className="text-[13px] ml-4 text-gray-400 font-semibold">
+                      Pharmacist Pending Confirmation
+                    </h1>
+                  </div>
 
-                <div className="flex items-center justify-center h-[100px]  ml-4 w-[100px] bg-white">
-                  <h1 className="text-[25px] text-black font-bold">31</h1>
+                  <div className="flex items-center justify-center h-[50px]  ml-4 w-[50px] bg-white rounded-full">
+                    <h1 className="text-[25px] text-black font-bold">31</h1>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div className="w-[100%] h-[60%] flex flex-row justify-center">
-          <div className="w-[65%] h-[80%] flex flex-col ">
+          <div className="w-[65%] h-[80%] flex flex-col">
             <div className="h-[25%] flex flex-col  bg-white drop-shadow-lg rounded-xl">
-              <h1 className="text-[25px] mt-4 ml-4 text-black font-bold">
+              <h1 className="text-[25px] ml-5 mt-2 text-black font-bold">
                 User's Statistics
               </h1>
               <h1 className="ml-4">
@@ -229,12 +216,10 @@ const Dashboard = () => {
 
           <div className="w-[25%] h-[80%] flex flex-col">
             <div className="h-[25%] flex flex-col ml-10  bg-white drop-shadow-lg rounded-xl">
-              <h1 className="text-[25px] mt-4 ml-4 text-black font-bold">
+              <h1 className="text-[25px] ml-5 mt-2 text-black font-bold">
                 Subscription Overview
               </h1>
-              <h1 className="ml-4">
-                Overview of no.of users in Cathartic Gofer
-              </h1>
+              <h1 className="ml-4">Overview of no.of users</h1>
             </div>
             <div className="h-[70%] mt-6 ml-10 bg-white drop-shadow-lg flex justify-center items-center">
               <Doughnut
